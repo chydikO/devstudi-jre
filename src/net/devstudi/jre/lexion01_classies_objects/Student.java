@@ -1,6 +1,9 @@
 package net.devstudi.jre.lexion01_classies_objects;
 
+import java.util.Objects;
+
 public class Student {
+	
 	private String firstName;
 	private String lastName;
 	private int age;
@@ -48,5 +51,29 @@ public class Student {
 
 	public String getFullName() {
 		return getLastName() + " " + getFirstName();
+	}
+	
+	@Override
+	public String toString() {
+		return "Student [firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + ", toString()="
+				+ super.toString() + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(age, firstName, lastName);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Student other = (Student) obj;
+		return age == other.age && Objects.equals(firstName, other.firstName)
+				&& Objects.equals(lastName, other.lastName);
 	}
 }
