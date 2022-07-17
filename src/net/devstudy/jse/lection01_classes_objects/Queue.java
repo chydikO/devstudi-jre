@@ -1,12 +1,12 @@
-package net.devstudi.jre.lexion01_classies_objects;
+package net.devstudy.jse.lection01_classes_objects;
 
-public class Stack {
-	Node head;
-	Node tail;
-	int size;
+public class Queue {
+	private Node head;
+	private int size;
 	
-	public Stack() {
-		tail = null;
+	
+	public Queue() {
+		head = null;
 		size = 0;
 	}
 
@@ -20,15 +20,16 @@ public class Stack {
 			while (currentNode.getNext() != null) {
 				currentNode = currentNode.getNext();
 			}
+			currentNode.setNext(newNode);
 		}
-		currentNode.setNext(newNode);
-		tail.setNext(newNode);
 		size++;
-		
 	}
 
 	public int get() {
-		return 0;
+		int result = head.getValue();
+		head = head.getNext();
+		size--;
+		return result;
 	}
 
 	public int size() {

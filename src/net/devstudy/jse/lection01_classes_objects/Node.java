@@ -1,4 +1,4 @@
-package net.devstudi.jre.lexion01_classies_objects;
+package net.devstudy.jse.lection01_classes_objects;
 
 public class Node {
 	private Node next;

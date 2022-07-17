@@ -1,6 +1,11 @@
 package net.devstudi.jre.lection02_inheritance_polymorph;
 
-public class ImmutableDataSet extends DataSet {
+/**
+ *
+ * @author devstudy
+ * @see http://devstudy.net
+ */
+public final class ImmutableDataSet extends DataSet {
 	private final DataSet originalDataSet;
 
 	public ImmutableDataSet(DataSet originalDataSet) {

@@ -1,9 +1,12 @@
 package net.devstudi.jre.lection02_inheritance_polymorph;
 
-import java.util.Objects;
+import net.devstudy.jse.lection01_classes_objects.Student;
 
-import net.devstudi.jre.lexion01_classies_objects.Student;
-
+/**
+ *
+ * @author devstudy
+ * @see http://devstudy.net
+ */
 public class ForeignStudent extends Student {
 	private String language;
 
@@ -23,22 +26,23 @@ public class ForeignStudent extends Student {
 	public String getLanguage() {
 		return language;
 	}
-	
+
 	@Override
 	public String getFullName() {
-	return getFirstName() + " " + getLastName();
+		return getFirstName() + " " + getLastName();
 	}
 
 	@Override
 	public String toString() {
-		return super.toString() + "ForeignStudent [language=" + language + "]";
+		return String.format("ForeignStudent [language=%s, getFirstName()=%s, getLastName()=%s, getAge()=%s]", language,
+				getFirstName(), getLastName(), getAge());
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(language);
+		result = prime * result + ((language == null) ? 0 : language.hashCode());
 		return result;
 	}
 
@@ -51,8 +55,11 @@ public class ForeignStudent extends Student {
 		if (getClass() != obj.getClass())
 			return false;
 		ForeignStudent other = (ForeignStudent) obj;
-		return Objects.equals(language, other.language);
+		if (language == null) {
+			if (other.language != null)
+				return false;
+		} else if (!language.equals(other.language))
+			return false;
+		return true;
 	}
-	
-	
 }

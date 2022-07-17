@@ -1,18 +1,25 @@
 package net.devstudi.jre.lection02_inheritance_polymorph;
 
+/**
+ *
+ * @author devstudy
+ * @see http://devstudy.net
+ */
 public class DataSetTest {
+
 	public static void main(String[] args) {
-		final DataSet d = new LinkedList(); // new DynaArray();
+		DataSet d = new LinkedList(); // new DynaArray();
 		fillDataSet(d, 0, 4);
-		System.out.println(d);
+		d = new ImmutableDataSet(d);
+		System.out.println(d.toString());
 		System.out.println("size=" + d.size());
 		d.remove(0);
 		d.remove(0);
 		System.out.println(d);
 		System.out.println("size=" + d.size());
-		d.clear(); // d = new LinkedList();
+		d.clear(); 
 		fillDataSet(d, 0, 99);
-		System.out.println(d.get(99));
+		System.out.println(d.get(2));
 		System.out.println(d.get(999));
 		System.out.println(d.remove(99));
 		System.out.println(d.remove(999));
@@ -23,4 +30,5 @@ public class DataSetTest {
 			d.add(i);
 		}
 	}
+
 }

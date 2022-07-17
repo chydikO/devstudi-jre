@@ -1,8 +1,12 @@
 package net.devstudi.jre.lection02_inheritance_polymorph;
 
 import java.util.Arrays;
-import java.util.Objects;
 
+/**
+ *
+ * @author devstudy
+ * @see http://devstudy.net
+ */
 public class DataSet {
 	protected int size;
 

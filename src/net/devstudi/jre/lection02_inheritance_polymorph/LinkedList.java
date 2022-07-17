@@ -5,19 +5,27 @@ package net.devstudi.jre.lection02_inheritance_polymorph;
  * @author devstudy
  * @see http://devstudy.net
  */
-public class LinkedList extends DataSet {
+public class LinkedList extends DataSet{
 	private Item first;
+	private Item last;
 
 	@Override
 	public void add(int element) {
+		Item item = new Item(element);
 		if (size == 0) {
-			first = new Item(element);
+			first = last = item;
 		} else {
-			Item item = new Item(element);
-			Item last = findItem(size - 1);
 			last.setNext(item);
+			item.setPrevious(last);
+			last = item;
 		}
 		size++;
+	}
+
+	@Override
+	public int get(int index) {
+		Item current = findItem(index);
+		return current != null ? current.getValue() : 0;
 	}
 
 	private Item findItem(int index) {
@@ -35,38 +43,45 @@ public class LinkedList extends DataSet {
 	}
 
 	@Override
-	public int get(int index) {
-		Item current = findItem(index);
-		return current != null ? current.getValue() : 0;
-	}
-
-	@Override
 	public int remove(int index) {
-		if (index == 0) {
-			Item current = first;
-			first = first.getNext();
-			decrementSize();
-			return current.getValue();
-		} else {
-			Item prevToRemove = findItem(index - 1);
-			Item current = prevToRemove.getNext();
-			prevToRemove.setNext(current.getNext());
-			decrementSize();
-			return current.getValue();
-		}
+		Item current = findItem(index);
+		return current != null ? removeCurrent(current) : 0;
 	}
 
-	private void decrementSize() {
+	private int removeCurrent(Item current) {
+		Item prev = current.getPrevious();
+		Item next = current.getNext();
+		if (next != null) {
+			removeCurrentFromNext(next, prev);
+		}
+		if (prev != null) {
+			removeCurrentFromPrevious(next, prev);
+		}
 		size--;
 		if (size == 0) {
-			first = null;
+			first = last = null;
+		}
+		return current.getValue();
+	}
+	
+	private void removeCurrentFromNext(Item next, Item prev){
+		next.setPrevious(prev);
+		if (prev == null) {
+			first = next;
+		}
+	}
+	
+	private void removeCurrentFromPrevious(Item next, Item prev){
+		prev.setNext(next);
+		if (next == null) {
+			last = prev;
 		}
 	}
 
 	@Override
 	public void clear() {
 		super.clear();
-		first = null;
+		first = last = null;
 	}
 
 	@Override

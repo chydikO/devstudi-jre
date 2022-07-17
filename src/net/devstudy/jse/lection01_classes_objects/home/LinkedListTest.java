@@ -1,4 +1,4 @@
-package net.devstudi.jre.lexion01_classies_objects.home;
+package net.devstudy.jse.lection01_classes_objects.home;
 
 import java.util.Arrays;
 
